@@ -93,12 +93,13 @@ async def gen_thumb(videoid, user_id):
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
 
-        Xcenter = youtube.width / 2
-        Ycenter = youtube.height / 2
+        Xcenter = youtube.width / 1
+        Ycenter = youtube.height / 1
+
         x1 = Xcenter - 250
-        y1 = Ycenter - 250
+        y1 = Ycenter - 230
         x2 = Xcenter + 250
-        y2 = Ycenter + 250
+        y2 = Ycenter + 230
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((640, 640), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
@@ -110,11 +111,11 @@ async def gen_thumb(videoid, user_id):
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
         logo.thumbnail((640, 640), Image.LANCZOS)
-        width = int((1280 - 380) / 3)
+        width = int((1280 - 380) / 4)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 30), mask=logo)
         background.paste(x, (965, 390), mask=x)
-        background.paste(image3, (0, 0), mask=image3)
+        background.paste(image3, (1, 1), mask=image3)
 
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
