@@ -109,11 +109,11 @@ async def gen_thumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((385, 385), Image.LANCZOS)
-        width = int((1280 - 380) / 2)
+        logo.thumbnail((450, 450), Image.LANCZOS)
+        width = int((1280 - 380) / 2.9)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 1, 28), mask=logo)
-        background.paste(x, (965, 420), mask=x)
+        background.paste(logo, (width + 1, 30), mask=logo)
+        background.paste(x, (965, 390), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
@@ -128,23 +128,23 @@ async def gen_thumb(videoid, user_id):
                 f"STARTED PLAYING...",
                 fill="white",
                 stroke_width=5,
-                stroke_fill="black",
+                stroke_fill="green",
                 font=arial,
             )
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    (110, 130),
+                    (800, 200),
                     f"{para[0]}",
                     fill="white",
                     stroke_width=1,
-                    stroke_fill="yellow",
+                    stroke_fill="red",
                     font=font,
                 )
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    (110, 183),
+                    (800, 253),
                     f"{para[1]}",
                     fill="white",
                     stroke_width=1,
@@ -155,8 +155,8 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            ((1280 - 45) / 1.46, 580),
-            f"{duration}",
+            ((1280 - 45) / 2, 700),
+            f"Duration: {duration}",
             fill="white",
             stroke_width=2,
             stroke_fill="black",
