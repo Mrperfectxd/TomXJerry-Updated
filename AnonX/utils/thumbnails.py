@@ -111,11 +111,11 @@ async def gen_thumb(videoid, user_id):
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
         logo.thumbnail((640, 640), Image.LANCZOS)
-        width = int((1280 - 380) / 4)
+        width = int((1280 - 380) / 4.5)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 40), mask=logo)
         background.paste(x, (965, 390), mask=x)
-        background.paste(image3, (1, 1), mask=image3)
+        background.paste(image3, (2, 2), mask=image3)
 
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
@@ -138,25 +138,25 @@ async def gen_thumb(videoid, user_id):
                     (750, 200),
                     f"{para[0]}",
                     fill="red",
-                    stroke_width=1,
-                    stroke_fill="red",
+                    stroke_width=2,
+                    stroke_fill="white",
                     font=font,
                 )
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    (750, 260),
+                    (750, 253),
                     f"{para[1]}",
                     fill="red",
-                    stroke_width=1,
-                    stroke_fill="red",
+                    stroke_width=2,
+                    stroke_fill="white",
                     font=font,
                 )
         except:
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            (750, 320),
+            (750, 313),
             f"Duration: {duration}",
             fill="white",
             stroke_width=2,
