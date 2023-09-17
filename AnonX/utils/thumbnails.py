@@ -97,9 +97,9 @@ async def gen_thumb(videoid, user_id):
         Ycenter = youtube.height / 2
 
         x1 = Xcenter - 250
-        y1 = Ycenter - 150
+        y1 = Ycenter - 230
         x2 = Xcenter + 250
-        y2 = Ycenter + 150
+        y2 = Ycenter + 230
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((640, 640), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
@@ -115,7 +115,7 @@ async def gen_thumb(videoid, user_id):
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 40), mask=logo)
         background.paste(x, (965, 390), mask=x)
-        background.paste(image3, (1.5, 1.5), mask=image3)
+        background.paste(image3, (1, 1), mask=image3)
 
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
@@ -147,9 +147,9 @@ async def gen_thumb(videoid, user_id):
                 draw.text(
                     (750, 260),
                     f"{para[1]}",
-                    fill="white",
+                    fill="red",
                     stroke_width=1,
-                    stroke_fill="yellow",
+                    stroke_fill="red",
                     font=font,
                 )
         except:
