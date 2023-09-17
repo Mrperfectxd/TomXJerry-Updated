@@ -93,8 +93,8 @@ async def gen_thumb(videoid, user_id):
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
 
-        Xcenter = youtube.width / 2
-        Ycenter = youtube.height / 2
+        Xcenter = youtube.width / 1.8
+        Ycenter = youtube.height / 1.8
 
         x1 = Xcenter - 250
         y1 = Ycenter - 230
@@ -111,7 +111,7 @@ async def gen_thumb(videoid, user_id):
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
         logo.thumbnail((640, 640), Image.LANCZOS)
-        width = int((1280 - 380) / 7)
+        width = int((1280 - 380) / 8)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 40), mask=logo)
         background.paste(x, (965, 390), mask=x)
