@@ -93,13 +93,13 @@ async def gen_thumb(videoid, user_id):
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
 
-        Xcenter = youtube.width / 1
-        Ycenter = youtube.height / 1
+        Xcenter = youtube.width / 2
+        Ycenter = youtube.height / 2
 
         x1 = Xcenter - 250
-        y1 = Ycenter - 230
+        y1 = Ycenter - 150
         x2 = Xcenter + 250
-        y2 = Ycenter + 230
+        y2 = Ycenter + 150
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((640, 640), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
@@ -113,15 +113,15 @@ async def gen_thumb(videoid, user_id):
         logo.thumbnail((640, 640), Image.LANCZOS)
         width = int((1280 - 380) / 4)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 2, 30), mask=logo)
+        background.paste(logo, (width + 2, 40), mask=logo)
         background.paste(x, (965, 390), mask=x)
-        background.paste(image3, (1, 1), mask=image3)
+        background.paste(image3, (1.5, 1.5), mask=image3)
 
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
         ImageFont.truetype("AnonX/assets/font2.ttf", 70)
         arial = ImageFont.truetype("AnonX/assets/font2.ttf", 65)
-        ImageFont.truetype("AnonX/assets/font.ttf", 30)
+        ImageFont.truetype("AnonX/assets/font.ttf", 35)
         para = textwrap.wrap(title, width=26)
         try:
             draw.text(
@@ -135,7 +135,7 @@ async def gen_thumb(videoid, user_id):
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    (800, 200),
+                    (750, 200),
                     f"{para[0]}",
                     fill="red",
                     stroke_width=1,
@@ -145,7 +145,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    (800, 253),
+                    (750, 260),
                     f"{para[1]}",
                     fill="white",
                     stroke_width=1,
@@ -156,7 +156,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            ((1280 - 45) / 3, 600),
+            (750, 320),
             f"Duration: {duration}",
             fill="white",
             stroke_width=2,
