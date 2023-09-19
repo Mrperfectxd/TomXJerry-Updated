@@ -79,7 +79,7 @@ async def gen_thumb(videoid, user_id):
         d = np.array(a)
         e = np.dstack((c, d))
         f = Image.fromarray(e)
-        x = f.resize((290, 290))
+        x = f.resize((280, 280))
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
         bg = Image.open(f"AnonX/assets/anonx.png")
@@ -96,10 +96,10 @@ async def gen_thumb(videoid, user_id):
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
 
-        x1 = Xcenter - 250
-        y1 = Ycenter - 230
-        x2 = Xcenter + 250
-        y2 = Ycenter + 230
+        x1 = Xcenter - 150
+        y1 = Ycenter - 150
+        x2 = Xcenter + 150
+        y2 = Ycenter + 150
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((500, 500), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
@@ -114,7 +114,7 @@ async def gen_thumb(videoid, user_id):
         width = int((1280 - 450) / 9)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 3, 40), mask=logo)
-        background.paste(x, (950, 380), mask=x)
+        background.paste(x, (945, 377), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
