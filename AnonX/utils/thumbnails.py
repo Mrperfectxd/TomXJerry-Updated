@@ -25,7 +25,7 @@ def changeImageSize(maxWidth, maxHeight, image):
 def add_corners(im):
     bigsize = (im.size[0] * 3, im.size[1] * 3)
     mask = Image.new("L", bigsize, 0)
-    ImageDraw.Draw(mask).rectangle((0, 0) + bigsize, fill=255)
+    ImageDraw.Draw(mask).rectangle((2, 2) + bigsize, fill=255)
     mask = mask.resize(im.size, Image.LANCZOS)
     mask = ImageChops.darker(mask, im.split()[-1])
     im.putalpha(mask)
@@ -93,8 +93,8 @@ async def gen_thumb(videoid, user_id):
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
 
-        Xcenter = youtube.width / 4
-        Ycenter = youtube.height / 4
+        Xcenter = youtube.width / 2
+        Ycenter = youtube.height / 2
 
         x1 = Xcenter - 250
         y1 = Ycenter - 230
