@@ -72,9 +72,9 @@ async def gen_thumb(videoid, user_id):
             hehe = await app.get_profile_photos(app.id)
             wxy = await app.download_media(hehe[0]['file_id'], file_name=f'{app.id}.jpg')
         xy = Image.open(wxy)
-        a = Image.new('L', [640, 640], 0)
+        a = Image.new('L', [720, 720], 0)
         b = ImageDraw.Draw(a)
-        b.pieslice([(0, 0), (640,640)], 0, 360, fill = 255, outline = "white")
+        b.pieslice([(0, 0), (720,720)], 0, 360, fill = 255, outline = "white")
         c = np.array(xy)
         d = np.array(a)
         e = np.dstack((c, d))
@@ -93,8 +93,8 @@ async def gen_thumb(videoid, user_id):
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
 
-        Xcenter = youtube.width / 1.8
-        Ycenter = youtube.height / 1.8
+        Xcenter = youtube.width / 4
+        Ycenter = youtube.height / 4
 
         x1 = Xcenter - 250
         y1 = Ycenter - 230
@@ -113,7 +113,7 @@ async def gen_thumb(videoid, user_id):
         logo.thumbnail((720, 720), Image.LANCZOS)
         width = int((1280 - 380) / 9)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 1, 85), mask=logo)
+        background.paste(logo, (width + 2, 60), mask=logo)
         background.paste(x, (965, 390), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
