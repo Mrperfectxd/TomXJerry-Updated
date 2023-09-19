@@ -101,7 +101,7 @@ async def gen_thumb(videoid, user_id):
         x2 = Xcenter + 250
         y2 = Ycenter + 230
         logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((640, 640), Image.LANCZOS)
+        logo.thumbnail((720, 720), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
         if not os.path.isfile(f"cache/cropped{videoid}.png"):
             im = Image.open(f"cache/chop{videoid}.png").convert("RGBA")
@@ -110,12 +110,12 @@ async def gen_thumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((640, 640), Image.LANCZOS)
-        width = int((1280 - 380) / 8)
+        logo.thumbnail((720, 720), Image.LANCZOS)
+        width = int((1280 - 380) / 9)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 40), mask=logo)
         background.paste(x, (965, 390), mask=x)
-        background.paste(image3, (2, 2), mask=image3)
+        background.paste(image3, (3, 3), mask=image3)
 
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
@@ -125,8 +125,8 @@ async def gen_thumb(videoid, user_id):
         para = textwrap.wrap(title, width=26)
         try:
             draw.text(
-                (200, 25),
-                f"STARTED PLAYING...",
+                (240, 45),
+                f"TOM PLAYING...",
                 fill="white",
                 stroke_width=5,
                 stroke_fill="green",
@@ -135,7 +135,7 @@ async def gen_thumb(videoid, user_id):
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    (750, 200),
+                    (720, 200),
                     f"{para[0]}",
                     fill="red",
                     stroke_width=2,
@@ -145,7 +145,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    (750, 253),
+                    (720, 247),
                     f"{para[1]}",
                     fill="red",
                     stroke_width=2,
@@ -156,7 +156,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            (750, 313),
+            (765, 309),
             f"Duration: {duration}",
             fill="white",
             stroke_width=2,
