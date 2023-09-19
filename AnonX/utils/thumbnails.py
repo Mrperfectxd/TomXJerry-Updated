@@ -24,8 +24,8 @@ def changeImageSize(maxWidth, maxHeight, image):
 
 def add_corners(im):
     bigsize = (im.size[0] * 3, im.size[1] * 3)
-    mask = Image.new("L", bigsize, 0)
-    ImageDraw.Draw(mask).rectangle((2, 2) + bigsize, fill=255)
+    mask = Image.new("L", bigsize, 1)
+    ImageDraw.Draw(mask).rectangle((2, 2) + bigsize, fill=285)
     mask = mask.resize(im.size, Image.LANCZOS)
     mask = ImageChops.darker(mask, im.split()[-1])
     im.putalpha(mask)
@@ -56,7 +56,7 @@ async def gen_thumb(videoid, user_id):
             try:
                 result["channel"]["name"]
             except:
-                pass
+                pass 
 
         async with aiohttp.ClientSession() as session:
             async with session.get(thumbnail) as resp:
@@ -74,7 +74,7 @@ async def gen_thumb(videoid, user_id):
         xy = Image.open(wxy)
         a = Image.new('L', [640, 640], 0)
         b = ImageDraw.Draw(a)
-        b.pieslice([(0, 0), (640,640)], 0, 360, fill = 255, outline = "white")
+        b.pieslice([(0, 0), (640,640)], 0, 360, fill = 285, outline = "white")
         c = np.array(xy)
         d = np.array(a)
         e = np.dstack((c, d))
