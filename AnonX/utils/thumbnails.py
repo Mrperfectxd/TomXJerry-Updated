@@ -101,7 +101,7 @@ async def gen_thumb(videoid, user_id):
         x2 = Xcenter + 250
         y2 = Ycenter + 230
         logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((720, 720), Image.LANCZOS)
+        logo.thumbnail((500, 500), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
         if not os.path.isfile(f"cache/cropped{videoid}.png"):
             im = Image.open(f"cache/chop{videoid}.png").convert("RGBA")
@@ -110,7 +110,7 @@ async def gen_thumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((720, 720), Image.LANCZOS)
+        logo.thumbnail((500, 500), Image.LANCZOS)
         width = int((1280 - 380) / 9)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 2, 60), mask=logo)
