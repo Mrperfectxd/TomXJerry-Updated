@@ -79,7 +79,7 @@ async def gen_thumb(videoid, user_id):
         d = np.array(a)
         e = np.dstack((c, d))
         f = Image.fromarray(e)
-        x = f.resize((280, 280))
+        x = f.resize((275, 275))
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
         bg = Image.open(f"AnonX/assets/anonx.png")
@@ -111,10 +111,10 @@ async def gen_thumb(videoid, user_id):
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
         logo.thumbnail((500, 500), Image.LANCZOS)
-        width = int((1280 - 450) / 9)
+        width = int((1280 - 450) / 10)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 3, 40), mask=logo)
-        background.paste(x, (945, 377), mask=x)
+        background.paste(x, (942, 374), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
@@ -156,7 +156,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            (780, 304),
+            (800, 296),
             f"Duration: {duration}",
             fill="white",
             stroke_width=2,
