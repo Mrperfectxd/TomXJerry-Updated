@@ -113,9 +113,9 @@ async def gen_thumb(videoid, user_id):
         logo.thumbnail((720, 720), Image.LANCZOS)
         width = int((1280 - 380) / 9)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 2, 40), mask=logo)
+        background.paste(logo, (width + 2, 85), mask=logo)
         background.paste(x, (965, 390), mask=x)
-        background.paste(image3, (3, 3), mask=image3)
+        background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
@@ -135,7 +135,7 @@ async def gen_thumb(videoid, user_id):
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    (720, 200),
+                    (710, 185),
                     f"{para[0]}",
                     fill="red",
                     stroke_width=2,
@@ -145,7 +145,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    (720, 247),
+                    (710, 232),
                     f"{para[1]}",
                     fill="red",
                     stroke_width=2,
@@ -156,7 +156,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            (765, 309),
+            (780, 304),
             f"Duration: {duration}",
             fill="white",
             stroke_width=2,
