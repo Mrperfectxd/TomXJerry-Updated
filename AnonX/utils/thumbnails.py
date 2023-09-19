@@ -89,7 +89,7 @@ async def gen_thumb(videoid, user_id):
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
 
-        image3 = changeImageSize(1280, 720, bg)
+        image3 = changeImageSize(640, 360, bg)
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
 
@@ -113,7 +113,7 @@ async def gen_thumb(videoid, user_id):
         logo.thumbnail((720, 720), Image.LANCZOS)
         width = int((1280 - 380) / 9)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 2, 85), mask=logo)
+        background.paste(logo, (width + 1, 85), mask=logo)
         background.paste(x, (965, 390), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
