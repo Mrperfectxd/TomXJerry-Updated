@@ -26,7 +26,7 @@ def add_corners(im):
     bigsize = (im.size[0] * 3, im.size[1] * 3)
     mask = Image.new("L", bigsize, 1)
     ImageDraw.Draw(mask).rectangle((2, 2) + bigsize, fill=285)
-    mask = mask.resize(im.size, Image.LANCZOS)
+    mask = mask.resize(im.size, Image.ANTIALIAS)
     mask = ImageChops.darker(mask, im.split()[-1])
     im.putalpha(mask)
 
@@ -74,7 +74,7 @@ async def gen_thumb(videoid, user_id):
         xy = Image.open(wxy)
         a = Image.new('L', [640, 640], 0)
         b = ImageDraw.Draw(a)
-        b.pieslice([(0, 0), (640,640)], 0, 400, fill = 285, outline = "white")
+        b.pieslice([(2, 2), (640,640)], 0, 400, fill = 285, outline = "white")
         c = np.array(xy)
         d = np.array(a)
         e = np.dstack((c, d))
@@ -96,8 +96,8 @@ async def gen_thumb(videoid, user_id):
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
 
-        x1 = Xcenter - 300
-        y1 = Ycenter - 300
+        x1 = Xcenter - 150
+        y1 = Ycenter - 150
         x2 = Xcenter + 300
         y2 = Ycenter + 300
         logo = youtube.crop((x1, y1, x2, y2))
@@ -110,7 +110,7 @@ async def gen_thumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((500, 500), Image.LANCZOS)
+        logo.thumbnail((500, 500), Image.ANTIALIAS)
         width = int((1280 - 450) / 10)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 3, 40), mask=logo)
