@@ -217,7 +217,7 @@ async def gen_qthumb(videoid, user_id):
         xy = Image.open(wxy)
         a = Image.new('L', [640, 640], 0)
         b = ImageDraw.Draw(a)
-        b.pieslice([(0, 0), (640,640)], 0, 360, fill = 255, outline = "white")
+        b.pieslice([(2, 2), (640,640)], 0, 400, fill = 285, outline = "white")
         c = np.array(xy)
         d = np.array(a)
         e = np.dstack((c, d))
@@ -252,7 +252,7 @@ async def gen_qthumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((385, 385), Image.LANCZOS)
+        logo.thumbnail((500, 500), Image.LANCZOS)
         width = int((1280 - 450) / 10.5)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 3, 40), mask=logo)
