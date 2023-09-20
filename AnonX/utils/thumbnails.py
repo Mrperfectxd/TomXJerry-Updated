@@ -111,7 +111,7 @@ async def gen_thumb(videoid, user_id):
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
         logo.thumbnail((500, 500), Image.ANTIALIAS)
-        width = int((1280 - 450) / 10)
+        width = int((1280 - 450) / 10.5)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 3, 40), mask=logo)
         background.paste(x, (939, 371), mask=x)
@@ -156,7 +156,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            (850, 292),
+            (695, 292),
             f"Duration: {duration}",
             fill="white",
             stroke_width=2,
