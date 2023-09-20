@@ -222,7 +222,7 @@ async def gen_qthumb(videoid, user_id):
         d = np.array(a)
         e = np.dstack((c, d))
         f = Image.fromarray(e)
-        x = f.resize((210, 210))
+        x = f.resize((275, 275))
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
         bg = Image.open(f"AnonX/assets/anonx.png")
@@ -238,10 +238,10 @@ async def gen_qthumb(videoid, user_id):
 
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
-        x1 = Xcenter - 250
-        y1 = Ycenter - 250
-        x2 = Xcenter + 250
-        y2 = Ycenter + 250
+        x1 = Xcenter - 400
+        y1 = Ycenter - 400
+        x2 = Xcenter + 400
+        y2 = Ycenter + 400
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((520, 520), Image.LANCZOS)
         logo.save(f"cache/chop{videoid}.png")
@@ -253,10 +253,10 @@ async def gen_qthumb(videoid, user_id):
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
         logo.thumbnail((385, 385), Image.LANCZOS)
-        width = int((1280 - 380) / 1.22)
+        width = int((1280 - 450) / 10.5)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 1, 28), mask=logo)
-        background.paste(x, (965, 420), mask=x)
+        background.paste(logo, (width + 3, 40), mask=logo)
+        background.paste(x, (939,371), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
@@ -267,39 +267,39 @@ async def gen_qthumb(videoid, user_id):
         para = textwrap.wrap(title, width=26)
         try:
             draw.text(
-                (70, 25),
-                "ADDED TO QUEUE...",
+                (240, 45),
+                "TOM ADDED QUEUE...",
                 fill="white",
                 stroke_width=5,
-                stroke_fill="black",
+                stroke_fill="green",
                 font=arial,
             )
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    (110, 130),
+                    (695, 185),
                     f"{para[0]}",
-                    fill="white",
-                    stroke_width=1,
-                    stroke_fill="yellow",
+                    fill="red",
+                    stroke_width=2,
+                    stroke_fill="white",
                     font=font,
                 )
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    (110, 183),
+                    (695, 232),
                     f"{para[1]}",
-                    fill="white",
-                    stroke_width=1,
-                    stroke_fill="yellow",
+                    fill="red",
+                    stroke_width=22,
+                    stroke_fill="white",
                     font=font,
                 )
         except:
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            ((1280 - 45) / 1.46, 580),
-            f" {duration}",
+            (695, 292),
+            f"Duration: {duration}",
             fill="white",
             stroke_width=2,
             stroke_fill="black",
