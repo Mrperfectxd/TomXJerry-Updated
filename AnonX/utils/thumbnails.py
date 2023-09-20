@@ -96,8 +96,8 @@ async def gen_thumb(videoid, user_id):
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
 
-        x1 = Xcenter - 300
-        y1 = Ycenter - 300
+        x1 = Xcenter - 400
+        y1 = Ycenter - 400
         x2 = Xcenter + 300
         y2 = Ycenter + 300
         logo = youtube.crop((x1, y1, x2, y2))
