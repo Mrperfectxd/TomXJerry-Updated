@@ -262,12 +262,12 @@ async def gen_qthumb(videoid, user_id):
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
         ImageFont.truetype("AnonX/assets/font2.ttf", 70)
-        arial = ImageFont.truetype("AnonX/assets/font2.ttf", 65)
+        arial = ImageFont.truetype("AnonX/assets/font2.ttf", 60)
         ImageFont.truetype("AnonX/assets/font.ttf", 30)
         para = textwrap.wrap(title, width=26)
         try:
             draw.text(
-                (240, 45),
+                (234, 45),
                 "TOM ADDED QUEUE...",
                 fill="white",
                 stroke_width=5,
@@ -290,7 +290,7 @@ async def gen_qthumb(videoid, user_id):
                     (695, 232),
                     f"{para[1]}",
                     fill="red",
-                    stroke_width=22,
+                    stroke_width=2,
                     stroke_fill="white",
                     font=font,
                 )
