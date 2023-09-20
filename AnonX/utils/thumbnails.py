@@ -74,7 +74,7 @@ async def gen_thumb(videoid, user_id):
         xy = Image.open(wxy)
         a = Image.new('L', [640, 640], 0)
         b = ImageDraw.Draw(a)
-        b.pieslice([(0, 0), (640,640)], 0, 360, fill = 285, outline = "white")
+        b.pieslice([(0, 0), (640,640)], 0, 400, fill = 285, outline = "white")
         c = np.array(xy)
         d = np.array(a)
         e = np.dstack((c, d))
@@ -114,7 +114,7 @@ async def gen_thumb(videoid, user_id):
         width = int((1280 - 450) / 10)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 3, 40), mask=logo)
-        background.paste(x, (942, 374), mask=x)
+        background.paste(x, (939, 371), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
@@ -135,7 +135,7 @@ async def gen_thumb(videoid, user_id):
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    (710, 185),
+                    (695, 185),
                     f"{para[0]}",
                     fill="red",
                     stroke_width=2,
@@ -145,7 +145,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    (710, 232),
+                    (695, 232),
                     f"{para[1]}",
                     fill="red",
                     stroke_width=2,
@@ -156,7 +156,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            (800, 296),
+            (850, 292),
             f"Duration: {duration}",
             fill="white",
             stroke_width=2,
